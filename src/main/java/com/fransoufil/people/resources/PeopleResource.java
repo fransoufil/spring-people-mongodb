@@ -1,6 +1,7 @@
 package com.fransoufil.people.resources;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fransoufil.people.domain.People;
+import com.fransoufil.people.dto.PeopleDTO;
 import com.fransoufil.people.services.PeopleService;
 
 @RestController
@@ -19,9 +21,10 @@ public class PeopleResource {
 	private PeopleService peopleService;
 	
 	@RequestMapping(method = RequestMethod.GET)
-	public ResponseEntity<List<People>> findAll() throws Exception {
+	public ResponseEntity<List<PeopleDTO>> findAll() throws Exception {
 		List<People> list = peopleService.findAll();
-		return ResponseEntity.ok().body(list);
+		List<PeopleDTO> listDto = list.stream().map(x -> new PeopleDTO(x)).collect(Collectors.toList());
+		return ResponseEntity.ok().body(listDto);
 	}
 
 }

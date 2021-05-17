@@ -36,7 +36,7 @@ public class Instantiation implements CommandLineRunner {
 				"Souza", 
 				sdf.parse("23/08/1968"),
 				new Adress(AdressType.PHYSICAL, "08080-000", "São Paulo", "Santo André", "Rua Central", 350, "Apt 6", "Vila Pires"),
-				Arrays.asList(new Phone("7777-7777")));
+				Arrays.asList(new Phone("1111-7777"), new Phone("7777-1111")));
 		
 		People carol = new People(
 				null,
@@ -45,7 +45,7 @@ public class Instantiation implements CommandLineRunner {
 				"Cristine", 
 				sdf.parse("23/07/1996"),
 				new Adress(AdressType.PHYSICAL, "07070-000", "Paraná", "Curitiba", "Rua Principal", 88, "Apt 111", "Centro"),
-				Arrays.asList(new Phone("8888-8888")));
+				Arrays.asList(new Phone("2222-8888"), new Phone("8888-2222"), new Phone("8822-2288")));
 		
 		People ana = new People(
 				null,
@@ -54,7 +54,7 @@ public class Instantiation implements CommandLineRunner {
 				"Clara", 
 				sdf.parse("02/08/2009"),
 				new Adress(AdressType.DELIVERY, "08080-000", "São Paulo", "Santo André", "Rua Central", 350, "Apt 6", "Vila Pires"),
-				Arrays.asList(new Phone("6666-6666")));
+				Arrays.asList(new Phone("3333-6666")));
 		
 		peopleRepository.saveAll(Arrays.asList(francisco, carol, ana));
 		

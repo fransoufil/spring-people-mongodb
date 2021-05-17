@@ -4,30 +4,37 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+import com.fransoufil.people.domain.enums.PeopleStatus;
+import com.fransoufil.people.domain.resources.Adress;
+import com.fransoufil.people.domain.resources.Phone;
+
+@Document(collection = "people")
 public class People implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	private String id;
-	private String Status;
+	private Integer status;
 	private String givenName;
 	private String familyName;
 	private Date birthDate;
 	private Adress adress;
-	private List<Phone> phone;
+	private List<Phone> phones;
 	
 	public People() {
 	}
 
-	public People(String id, String status, String givenName, String familyName, Date birthDate, Adress adress,
-			List<Phone> phone) {
+	public People(String id, PeopleStatus status, String givenName, String familyName, Date birthDate, Adress adress,
+			List<Phone> phones) {
 		super();
 		this.id = id;
-		Status = status;
+		this.status = status.getCod();
 		this.givenName = givenName;
 		this.familyName = familyName;
 		this.birthDate = birthDate;
 		this.adress = adress;
-		this.phone = phone;
+		this.setPhone(phones);
 	}
 
 	public String getId() {
@@ -37,13 +44,13 @@ public class People implements Serializable {
 	public void setId(String id) {
 		this.id = id;
 	}
-
-	public String getStatus() {
-		return Status;
+	
+	public PeopleStatus getStatus() {
+		return PeopleStatus.toEnum(status);
 	}
 
-	public void setStatus(String status) {
-		Status = status;
+	public void setStatus(PeopleStatus status) {
+		this.status = status.getCod();
 	}
 
 	public String getGivenName() {
@@ -78,16 +85,16 @@ public class People implements Serializable {
 		this.adress = adress;
 	}
 
-	public List<Phone> getPhones() {
-		return phone;
-	}
-
-	public void setPhones(List<Phone> phones) {
-		this.phone = phones;
-	}
-
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+	
+	public List<Phone> getPhone() {
+		return phones;
+	}
+
+	public void setPhone(List<Phone> phones) {
+		this.phones = phones;
 	}
 
 	@Override
@@ -114,4 +121,5 @@ public class People implements Serializable {
 			return false;
 		return true;
 	}
+	
 }

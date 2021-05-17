@@ -1,12 +1,12 @@
-package com.fransoufil.people.domain;
+package com.fransoufil.people.domain.resources;
 
 import java.io.Serializable;
+import com.fransoufil.people.domain.resources.enums.AdressType;
 
 public class Adress implements Serializable {
-	
 	private static final long serialVersionUID = 1L;
-	private String idPeople;
-	private String type;
+	
+	private Integer type;
 	private String zipcode;
 	private String state;
 	private String city;
@@ -18,11 +18,10 @@ public class Adress implements Serializable {
 	public Adress() {
 	}
 	
-	public Adress(String idPeople, String type, String zipcode, String state, String city, String street, int number,
+	public Adress(AdressType type, String zipcode, String state, String city, String street, int number,
 			String complement, String district) {
 		super();
-		this.idPeople = idPeople;
-		this.type = type;
+		this.type = type.getCod();
 		this.zipcode = zipcode;
 		this.state = state;
 		this.city = city;
@@ -32,20 +31,12 @@ public class Adress implements Serializable {
 		this.district = district;
 	}
 
-	public String getIdPeople() {
-		return idPeople;
+	public AdressType getType() {
+		return AdressType.toEnum(type);
 	}
 
-	public void setIdPeople(String idPeople) {
-		this.idPeople = idPeople;
-	}
-
-	public String getType() {
-		return type;
-	}
-
-	public void setType(String type) {
-		this.type = type;
+	public void setType(AdressType type) {
+		this.type = type.getCod();
 	}
 
 	public String getZipcode() {
@@ -103,29 +94,5 @@ public class Adress implements Serializable {
 	public void setDistrict(String district) {
 		this.district = district;
 	}
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((idPeople == null) ? 0 : idPeople.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Adress other = (Adress) obj;
-		if (idPeople == null) {
-			if (other.idPeople != null)
-				return false;
-		} else if (!idPeople.equals(other.idPeople))
-			return false;
-		return true;
-	}
+	
 }

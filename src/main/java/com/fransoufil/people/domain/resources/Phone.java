@@ -1,31 +1,15 @@
-package com.fransoufil.people.domain;
+package com.fransoufil.people.domain.resources;
 
 import java.io.Serializable;
 
 public class Phone implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private String idPeople;
 	private String number;
 	
-	public Phone() {
-	}
-	
 	public Phone(String number) {
-	}
-
-	public Phone(String idPeople, String number) {
 		super();
-		this.idPeople = idPeople;
 		this.number = number;
-	}
-
-	public String getIdPeople() {
-		return idPeople;
-	}
-
-	public void setIdPeople(String idPeople) {
-		this.idPeople = idPeople;
 	}
 
 	public String getNumber() {
@@ -36,11 +20,15 @@ public class Phone implements Serializable {
 		this.number = number;
 	}
 
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((idPeople == null) ? 0 : idPeople.hashCode());
+		result = prime * result + ((number == null) ? 0 : number.hashCode());
 		return result;
 	}
 
@@ -53,11 +41,12 @@ public class Phone implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Phone other = (Phone) obj;
-		if (idPeople == null) {
-			if (other.idPeople != null)
+		if (number == null) {
+			if (other.number != null)
 				return false;
-		} else if (!idPeople.equals(other.idPeople))
+		} else if (!number.equals(other.number))
 			return false;
 		return true;
 	}
+	
 }

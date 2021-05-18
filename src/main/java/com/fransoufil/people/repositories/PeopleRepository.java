@@ -11,4 +11,6 @@ import com.fransoufil.people.domain.People;
 public interface PeopleRepository extends MongoRepository<People, String>{
 
 	List<People> findByGivenNameContainingIgnoreCase(String givenname);
+	
+	List<People> findByFamilyNameContainingIgnoreCase(String familyname);
 }

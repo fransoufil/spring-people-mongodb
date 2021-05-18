@@ -69,4 +69,8 @@ public class PeopleService {
 		return peopleRepository.findByGivenNameContainingIgnoreCase(givenname);
 	}
 	
+	public List<People> findByFamilyName(String familyname){
+		return peopleRepository.findByFamilyNameContainingIgnoreCase(familyname);
+	}
+	
 }

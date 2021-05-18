@@ -61,10 +61,17 @@ public class PeopleResource {
 		return ResponseEntity.noContent().build();
 	}
 	
-	@RequestMapping(value = "/givennamesearch", method = RequestMethod.GET)
+	@RequestMapping(value = "/search/givenname", method = RequestMethod.GET)
 	public ResponseEntity<List<People>> findByGivenName(@RequestParam(value = "givenname", defaultValue = "") String givenname) throws Exception {
 		givenname = URL.decodeParam(givenname);
 		List<People> list = peopleService.findByGivenName(givenname);
+		return ResponseEntity.ok().body(list);
+	}
+	
+	@RequestMapping(value = "/search/familyname", method = RequestMethod.GET)
+	public ResponseEntity<List<People>> findByFamilyName(@RequestParam(value = "familyname", defaultValue = "") String familyname) throws Exception {
+		familyname = URL.decodeParam(familyname);
+		List<People> list = peopleService.findByFamilyName(familyname);
 		return ResponseEntity.ok().body(list);
 	}
 }

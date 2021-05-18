@@ -7,6 +7,9 @@ public class Phone implements Serializable {
 	
 	private String number;
 	
+	public Phone() {
+	}
+	
 	public Phone(String number) {
 		super();
 		this.number = number;

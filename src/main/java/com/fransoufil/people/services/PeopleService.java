@@ -52,8 +52,6 @@ public class PeopleService {
 		newObj.setBirthDate(obj.getBirthDate());
 		newObj.setAdress(obj.getAdress());
 		newObj.setPhone(obj.getPhone());
-		
-		
 	}
 	
 	public People fromDTO(PeopleDTO objDto) {
@@ -66,4 +64,9 @@ public class PeopleService {
 				objDto.getAdress(), 
 				objDto.getPhones());
 	}
+	
+	public List<People> findByGivenName(String givenname){
+		return peopleRepository.findByGivenNameContainingIgnoreCase(givenname);
+	}
+	
 }

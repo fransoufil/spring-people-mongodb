@@ -10,11 +10,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.fransoufil.people.domain.People;
 import com.fransoufil.people.dto.PeopleDTO;
+import com.fransoufil.people.resources.utils.URL;
 import com.fransoufil.people.services.PeopleService;
 
 @RestController
@@ -57,5 +59,12 @@ public class PeopleResource {
 		obj.setId(id);
 		obj = peopleService.update(obj);
 		return ResponseEntity.noContent().build();
+	}
+	
+	@RequestMapping(value = "/givennamesearch", method = RequestMethod.GET)
+	public ResponseEntity<List<People>> findByGivenName(@RequestParam(value = "givenname", defaultValue = "") String givenname) throws Exception {
+		givenname = URL.decodeParam(givenname);
+		List<People> list = peopleService.findByGivenName(givenname);
+		return ResponseEntity.ok().body(list);
 	}
 }

@@ -31,6 +31,11 @@ public class PeopleService {
 		return peopleRepository.insert(obj);
 	}
 	
+	public void delete(String id ) {
+		findById(id);
+		peopleRepository.deleteById(id);
+	}
+	
 	public People fromDTO(PeopleDTO objDto) {
 		return new People(
 				objDto.getId(), 

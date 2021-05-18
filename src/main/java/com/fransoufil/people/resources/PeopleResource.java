@@ -50,4 +50,12 @@ public class PeopleResource {
 		peopleService.delete(id);
 		return ResponseEntity.noContent().build();
 	}
+	
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody PeopleDTO objDto, @PathVariable String id) throws Exception {
+		People obj = peopleService.fromDTO(objDto);
+		obj.setId(id);
+		obj = peopleService.update(obj);
+		return ResponseEntity.noContent().build();
+	}
 }

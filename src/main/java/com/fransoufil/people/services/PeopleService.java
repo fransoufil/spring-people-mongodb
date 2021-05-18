@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.fransoufil.people.domain.People;
 import com.fransoufil.people.domain.enums.PeopleStatus;
@@ -27,6 +28,7 @@ public class PeopleService {
 		return obj.orElseThrow(()-> new ObjectNotFoundException("People with Id: " + id + " not found!"));
 	}
 	
+	@Transactional
 	public People insert(People obj) {
 		return peopleRepository.insert(obj);
 	}
@@ -34,6 +36,24 @@ public class PeopleService {
 	public void delete(String id ) {
 		findById(id);
 		peopleRepository.deleteById(id);
+	}
+	
+	public People update(People obj) {
+		Optional<People> optionalObj = peopleRepository.findById(obj.getId());
+		People newObj = optionalObj.get();
+		updateData(newObj, obj);
+		return peopleRepository.save(newObj);
+	}
+	
+	private void updateData(People newObj, People obj) {
+		newObj.setStatus(obj.getStatus());
+		newObj.setGivenName(obj.getGivenName());
+		newObj.setFamilyName(obj.getFamilyName());
+		newObj.setBirthDate(obj.getBirthDate());
+		newObj.setAdress(obj.getAdress());
+		newObj.setPhone(obj.getPhone());
+		
+		
 	}
 	
 	public People fromDTO(PeopleDTO objDto) {

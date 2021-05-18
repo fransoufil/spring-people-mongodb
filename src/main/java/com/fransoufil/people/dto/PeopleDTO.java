@@ -3,7 +3,6 @@ package com.fransoufil.people.dto;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
 import com.fransoufil.people.domain.People;
 import com.fransoufil.people.domain.enums.PeopleStatus;
 import com.fransoufil.people.domain.resources.Adress;
@@ -19,7 +18,6 @@ public class PeopleDTO implements Serializable {
 	private Date birthDate;
 	private Adress adress;
 	private List<Phone> phones;
-	
 	public PeopleDTO() {
 		
 	}
@@ -89,7 +87,5 @@ public class PeopleDTO implements Serializable {
 	public void setPhones(List<Phone> phones) {
 		this.phones = phones;
 	}
-
-	
 	
 }

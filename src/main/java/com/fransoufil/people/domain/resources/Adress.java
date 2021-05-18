@@ -1,6 +1,7 @@
 package com.fransoufil.people.domain.resources;
 
 import java.io.Serializable;
+
 import com.fransoufil.people.domain.resources.enums.AdressType;
 
 public class Adress implements Serializable {
@@ -14,7 +15,6 @@ public class Adress implements Serializable {
 	private int number;
 	private String complement;
 	private String district;
-	
 	public Adress() {
 	}
 	

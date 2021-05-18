@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.fransoufil.people.domain.People;
-import com.fransoufil.people.domain.enums.PeopleStatus;
 import com.fransoufil.people.dto.PeopleDTO;
 import com.fransoufil.people.repositories.PeopleRepository;
 import com.fransoufil.people.services.exceptions.ObjectNotFoundException;

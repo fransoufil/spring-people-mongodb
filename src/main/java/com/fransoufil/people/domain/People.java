@@ -3,10 +3,10 @@ package com.fransoufil.people.domain;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-
+import javax.validation.constraints.NotEmpty;
+import org.hibernate.validator.constraints.Length;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
 import com.fransoufil.people.domain.enums.PeopleStatus;
 import com.fransoufil.people.domain.resources.Adress;
 import com.fransoufil.people.domain.resources.Phone;
@@ -18,7 +18,11 @@ public class People implements Serializable {
 	@Id
 	private String id;
 	private Integer status;
+	@NotEmpty(message = "Given Name must be informated")
+	@Length(min=1, max=20, message = "The lenght must be between 1 and 20 characters")
 	private String givenName;
+	@NotEmpty(message = "Family Name must be informated")
+	@Length(min=1, max=20, message = "The lenght must be between 1 and 50 characters")
 	private String familyName;
 	private Date birthDate;
 	private Adress adress;

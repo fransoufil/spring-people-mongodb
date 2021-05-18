@@ -3,8 +3,8 @@ package com.fransoufil.people.resources;
 import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.mapping.event.ValidatingMongoEventListener;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 import com.fransoufil.people.domain.People;
 import com.fransoufil.people.dto.PeopleDTO;
 import com.fransoufil.people.resources.utils.URL;
@@ -74,4 +73,5 @@ public class PeopleResource {
 		List<People> list = peopleService.findByFamilyName(familyname);
 		return ResponseEntity.ok().body(list);
 	}
+	
 }
